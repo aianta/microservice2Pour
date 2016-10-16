@@ -1,0 +1,20 @@
+{
+    "name": "pour",
+    "verbs": "pour",
+    "entityType": {"e1":"liquid water juice oil wine","e2":"container jar recipient", "e3":"container jar recipient environment"},
+    "description": "calculates the new content values after transferring maximum volume of liquid from one container to another without loosing any liquid",
+    "qas": {"what":"liquid","from_what":"from_Jar.name","to_what":"to_Jar.name","how_much":"poured"},
+    "changes": {"from_Jar.name":"content","to_Jar.name":"content"},
+    "input": {"from_Jar.volume":"int","from_Jar.content":"int","to_Jar.volume":"int","to_Jar.content":"int"},
+    "output": {"from_Jar.content":"int", "to_Jar.content":"int","poured":"int"},
+    "inputQuery": "MATCH (from_Jar)-[:IN]->(c)<-[:IN]-(to_Jar) WHERE c.status='ToDo' AND from_Jar.content > 0 AND to_Jar.volume > to_Jar.content RETURN ID(c) AS contextID, c.step, from_Jar.name, from_Jar.volume, from_Jar.content, to_Jar.name, to_Jar.volume, to_Jar.content",
+    "execCmd": "java -jar Functions/Pour.jar",
+    "binPath": "",
+    "srcPath": "",
+    "authorName": "Stefan Ianta",
+    "authorId": 0,
+    "price": 0.0,
+    "duration": 0,
+    "energyUsed": 0.0,
+    "tested": true
+ }
